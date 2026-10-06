@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedCraft by Nishat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" onclick="showPage('home')"><img src="logo.png" alt="MedCraft"></a>
+  <nav id="publicNav">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('login')">Login</button>
+    <button class="primary" onclick="showPage('register')">Register</button>
+  </nav>
+  <nav id="userNav" class="hidden">
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="showPage('admin')">Admin</button>
+    <button onclick="logout()">Logout</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">MEDICAL ADMISSION • MENTORSHIP • GUIDANCE</span>
+      <h1>তোমার মেডিকেল যাত্রা<br><span>শুরু হোক আজ থেকেই।</span></h1>
+      <p>পথটা কঠিন হতে পারে, কিন্তু তুমি একা নও। MedCraft তোমার প্রস্তুতির প্রতিটি ধাপে পাশে থাকার চেষ্টা করবে।</p>
+      <div class="actions">
+        <button class="primary" onclick="showPage('register')">Get Started</button>
+        <button onclick="showPage('login')">Student Login</button>
+      </div>
+    </div>
+    <div class="mascot-card">
+      <div class="robot">🤖</div>
+      <h3>Hi, I'm <span>Nova</span> 👋</h3>
+      <p>চলো, ধাপে ধাপে তোমার লক্ষ্যটার দিকে এগিয়ে যাই।</p>
+    </div>
+  </div>
+  <div class="features">
+    <article><b>🎥 Recorded Classes</b><span>নিজের সময় অনুযায়ী শেখো</span></article>
+    <article><b>📝 Exams</b><span>নিজের প্রস্তুতি যাচাই করো</span></article>
+    <article><b>🔴 Live Classes</b><span>লাইভ সেশনে যুক্ত হও</span></article>
+    <article><b>📚 Materials</b><span>প্রয়োজনীয় নোট ও PDF</span></article>
+  </div>
+</section>
+
+<section id="register" class="page">
+  <div class="auth-wrap">
+    <div class="auth-copy">
+      <span class="eyebrow">STUDENT REGISTRATION</span>
+      <h2>তোমার যাত্রার প্রথম ধাপ এখানেই।</h2>
+      <p>তথ্যগুলো পূরণ করে Account তৈরি করো। Admin verification-এর পর তোমার access চালু হবে।</p>
+      <div class="robot small">🤖</div>
+      <p class="quote">“প্রতিদিন একটু করে এগিয়ে যাও—একদিন সেই ছোট ছোট ধাপই বড় ফল তৈরি করবে।”</p>
+    </div>
+    <form id="registerForm" class="card">
+      <h3>Create Account</h3>
+      <label>Full Name<input id="regName" required></label>
+      <label>Student ID<input id="regId" required></label>
+      <label>Phone<input id="regPhone" required></label>
+      <label>Email<input id="regEmail" type="email"></label>
+      <label>Password<input id="regPassword" type="password" minlength="6" required></label>
+      <button class="primary full" type="submit">Register</button>
+      <p class="form-note">Already have an account? <a onclick="showPage('login')">Login</a></p>
+    </form>
+  </div>
+</section>
+
+<section id="login" class="page">
+  <div class="auth-wrap">
+    <div class="auth-copy">
+      <span class="eyebrow">WELCOME BACK</span>
+      <h2>আবার শুরু করো।<br>আজকের কাজটা আজই।</h2>
+      <p>Student ID এবং Password দিয়ে প্রবেশ করো।</p>
+      <div class="robot small">🤖</div>
+      <p class="quote">“Consistency matters more than one perfect day.”</p>
+    </div>
+    <form id="loginForm" class="card">
+      <h3>Login</h3>
+      <label>Student ID<input id="loginId" required></label>
+      <label>Password<input id="loginPassword" type="password" required></label>
+      <button class="primary full" type="submit">Login</button>
+      <p class="form-note">New student? <a onclick="showPage('register')">Register</a></p>
+    </form>
+  </div>
+</section>
+
+<section id="dashboard" class="page">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="side-brand">MED<span>CRAFT</span></div>
+      <button class="side active" onclick="dashTab('overview',this)">⌂ Dashboard</button>
+      <button class="side" onclick="dashTab('classes',this)">▶ Recorded Classes</button>
+      <button class="side" onclick="dashTab('live',this)">● Live Classes</button>
+      <button class="side" onclick="dashTab('exams',this)">▣ Exams</button>
+      <button class="side" onclick="dashTab('materials',this)">▤ Materials</button>
+      <button class="side" onclick="dashTab('results',this)">◉ Results</button>
+      <button class="side" onclick="dashTab('profile',this)">♙ Profile</button>
+      <button class="side logout-side" onclick="logout()">↪ Logout</button>
+    </aside>
+    <div class="dash-content">
+      <div id="overview" class="dash-tab active-tab">
+        <span class="eyebrow">STUDENT DASHBOARD</span>
+        <h2>শুভেচ্ছা, <span id="studentName">Student</span>! 👋</h2>
+        <p>আজ একটু এগিয়ে যাও। তোমার ভবিষ্যতের জন্য সেটাই যথেষ্ট।</p>
+        <div class="dash-grid">
+          <article onclick="dashTab('classes')"><strong>🎥</strong><h3>Recorded Classes</h3><p>Watch & Learn</p></article>
+          <article onclick="dashTab('live')"><strong>🔴</strong><h3>Live Classes</h3><p>Join Upcoming</p></article>
+          <article onclick="dashTab('exams')"><strong>📝</strong><h3>Exams</h3><p>Test Your Knowledge</p></article>
+          <article onclick="dashTab('materials')"><strong>📚</strong><h3>Materials</h3><p>Notes & PDFs</p></article>
+          <article onclick="dashTab('results')"><strong>📊</strong><h3>Results</h3><p>Track Your Progress</p></article>
+          <article onclick="dashTab('profile')"><strong>👤</strong><h3>Profile</h3><p>View & Edit</p></article>
+        </div>
+        <div class="tip"><b>Nova:</b> “আজকের ছোট্ট effort-টাও গুরুত্বপূর্ণ। Keep going!”</div>
+      </div>
+
+      <div id="classes" class="dash-tab">
+        <h2>Recorded Classes</h2><p>তোমার enrolled classes এখানে দেখা যাবে।</p>
+        <div id="classList" class="list"></div>
+      </div>
+
+      <div id="live" class="dash-tab">
+        <h2>Live Classes</h2><p>পরবর্তী লাইভ ক্লাসগুলো এখানে থাকবে।</p>
+        <div id="liveList"></div>
+      </div>
+
+      <div id="exams" class="dash-tab">
+        <h2>Exams</h2>
+        <div class="tabs"><button class="primary">Live Exam</button><button>Upcoming</button><button>Archive</button></div>
+        <div id="examList"></div>
+      </div>
+
+      <div id="materials" class="dash-tab">
+        <h2>Study Materials</h2><p>প্রয়োজনীয় PDF, notes এবং resources এক জায়গায়।</p>
+        <div id="materialList" class="list"></div>
+      </div>
+
+      <div id="results" class="dash-tab">
+        <h2>Results</h2><p>তোমার পরীক্ষার ফলাফল ও progress এখানে থাকবে।</p>
+        <div class="stats"><div><b>0</b><span>Total Exams</span></div><div><b>—</b><span>Average Score</span></div><div><b>—</b><span>Best Score</span></div></div>
+      </div>
+
+      <div id="profile" class="dash-tab">
+        <h2>My Profile</h2>
+        <div class="card profile-card"><p><b>Name:</b> <span id="profileName">—</span></p><p><b>Student ID:</b> <span id="profileId">—</span></p><p><b>Phone:</b> <span id="profilePhone">—</span></p><p><b>Email:</b> <span id="profileEmail">—</span></p><p><b>Status:</b> <span class="status approved">Approved</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="admin" class="page">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="side-brand">ADMIN<span>PANEL</span></div>
+      <button class="side active" onclick="adminTab('adminHome',this)">⌂ Dashboard</button>
+      <button class="side" onclick="adminTab('students',this)">♙ Students</button>
+      <button class="side" onclick="adminTab('content',this)">▤ Content</button>
+    </aside>
+    <div class="dash-content">
+      <div id="adminHome" class="admin-tab active-tab">
+        <span class="eyebrow">ADMIN PANEL</span>
+        <h2>সবকিছুর নিয়ন্ত্রণ এক জায়গায়।</h2>
+        <p>এই V1 prototype-এ student approval এবং content entry locally কাজ করবে।</p>
+        <div class="stats"><div><b id="pendingCount">0</b><span>Pending</span></div><div><b id="approvedCount">0</b><span>Approved</span></div><div><b id="contentCount">0</b><span>Content</span></div></div>
+      </div>
+
+      <div id="students" class="admin-tab">
+        <h2>Manage Students</h2><p>নতুন registration review করে Approve/Reject করতে পারবে।</p>
+        <div id="studentList" class="list"></div>
+      </div>
+
+      <div id="content" class="admin-tab">
+        <h2>Manage Content</h2>
+        <p>এখানে title + link দিয়ে demo content যোগ করা যাবে। Real PDF/video upload-এর জন্য পরে cloud storage/backend যুক্ত করতে হবে।</p>
+        <form id="contentForm" class="card admin-form">
+          <label>Type<select id="contentType"><option value="class">Recorded Class</option><option value="live">Live Class</option><option value="exam">Exam</option><option value="material">Material</option></select></label>
+          <label>Title<input id="contentTitle" required></label>
+          <label>Link<input id="contentLink" placeholder="https://..."></label>
+          <button class="primary" type="submit">Add Content</button>
+        </form>
+        <div id="adminContentList" class="list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
